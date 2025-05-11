@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vision Bot Tracker</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    body {
+      width: 300px;
+      margin: 0;
+      padding: 15px;
+      font-family: 'Roboto', sans-serif;
+      background-color: #f5f7fa;
+      color: #333;
+    }
+    .header {
+      text-align: center;
+      padding: 10px 0;
+      background: linear-gradient(135deg, #0b2b30, #676124);
+      color: white;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+    .header h3 {
+      margin: 0;
+      font-size: 1.2em;
+    }
+    .button-container {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    button {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 0.9em;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.1s;
+    }
+    #viewText {
+      background-color: #28a745;
+      color: white;
+    }
+    #clearText {
+      background-color: #dc3545;
+      color: white;
+    }
+    button:hover {
+      opacity: 0.9;
+      transform: scale(1.05);
+    }
+    button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+    #status {
+      font-size: 0.9em;
+      margin: 10px 0;
+      padding: 8px;
+      border-radius: 5px;
+      background-color: #e9ecef;
+      text-align: center;
+    }
+    .text-list {
+      max-height: 150px;
+      overflow-y: auto;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 10px;
+      background-color: white;
+    }
+    .text-item {
+      font-size: 0.85em;
+      padding: 5px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .text-item:last-child {
+      border-bottom: none;
+    }
+    .text-item span {
+      color: #666;
+      font-size: 0.8em;
+    }
+    #status.loading::before {
+      content: '';
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid #333;
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-right: 5px;
+    }
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+    .text-item {
+      position: relative;
+    }
+    .text-item:hover::after {
+      content: attr(data-fulltext);
+      position: absolute;
+      background: #333;
+      color: white;
+      padding: 5px;
+      border-radius: 3px;
+      z-index: 10;
+      left: 0;
+      top: 100%;
+      white-space: normal;
+      width: 200px;
+    }
+    button:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  body.dark {
+    background-color: #333;
+    color: #fff;
+  }
+  body.dark .header {
+    background: linear-gradient(135deg, #040d0e, #514e36);
+  }
+  body.dark #viewText {
+    background-color: #218838;
+  }
+  body.dark #clearText {
+    background-color: #c82333;
+  }
+  body.dark #themeToggle {
+    background-color: #444;
+  }
+  body.dark #status {
+    background-color: #555;
+  }
+  body.dark .text-list {
+    background-color: #444;
+    border-color: #555;
+  }
+  body.dark .text-item {
+    border-bottom-color: #555;
+  }
+  body.dark .text-item span {
+    color: #bbb;
+  }
+  #themeToggle {
+    background-color: #444;
+    color: white;
+  }
+  body {
+    transition: background-color 0.3s, color 0.3s;
+  }
+  #status, .text-list {
+    transition: background-color 0.3s, border-color 0.3s;
+  }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h3>Perplexity Gazer</h3>
+  </div>
+  <div class="button-container">
+    <button id="viewText">View Saved Text</button>
+    <button id="clearText">Clear Text</button>
+    <button id="themeToggle">Dark Theme</button>
+  </div>
+  <p id="status">Status: Ready</p>
+  <div class="text-list" id="textList"></div>
+  <script src="popup.js"></script>
+</body>
+</html>
