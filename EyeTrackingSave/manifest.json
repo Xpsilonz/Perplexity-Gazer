@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "Perplexity Gazer",
+  "version": "1.0",
+  "description": "Saves text temporarily for vision-based tracking. Then will create an chat assistant base on what you're gazing!",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "tabs",
+    "storage",
+    "webNavigation"
+  ],
+  "host_permissions": [
+    "<all_urls>",
+    "https://*.firebaseio.com/*",
+    "https://*.firebaseapp.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "pgicon16.png",
+      "48": "pgicon48.png",
+      "128": "pgicon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": [
+        "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js",
+        "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js",
+        "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js",
+        "firebase-config.js",
+        "content.js"
+      ]
+    }
+  ]
+}
